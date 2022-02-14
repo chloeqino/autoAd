@@ -1,0 +1,115 @@
+.App {
+  text-align: center;
+}
+.adCard{
+ 
+  position: relative;
+  height: 400px;
+ width: 500px;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ 
+ 
+ 
+}
+.canvasContainer{
+  display: table;
+  width: 600px;
+  overflow: hidden;
+  border:none;
+  margin: 0;
+}
+.adCard .bgImgContainer{
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 600px;
+  
+  
+}
+.bgImgContainer img{
+  position: absolute;
+  height: 400px;
+  width: 100%;
+  object-fit: fill;
+  object-position: top;
+  left: 0;
+  top: 0;
+}
+.adCard .logosvg{
+  position: relative;
+  transform: scale(0.4);
+  margin: 0;
+}
+.adCard .textContent{
+  position: relative;
+  z-index: 2;
+  display: table;
+  background: rgba(255, 255, 255, 0.81);
+  width: 40%;
+  margin: 0 auto;
+  font-size: 0.5rem;
+  padding-bottom: 1rem;
+  border-radius: 13px;
+}
+.dn{
+  display: block;
+  position: relative;
+ height: 0px;
+  overflow: hidden;
+  padding: 0;
+  width: 0;
+}
+
+.adCard .priceBox{
+  position: relative;
+  background: white;
+  width: 25%;
+  margin: 0 auto;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: center;
+  font-size: 20px;
+  border-radius: 13px;
+}
+.adCard .priceBox::after{
+  content: "\20AC";
+  font-size: 0.5em;
+  align-self: flex-start;
+
+}
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
