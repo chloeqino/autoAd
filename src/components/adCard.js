@@ -1,14 +1,9 @@
 import React, { useState, useEffect,useRef,forwardRef, createContext } from "react";
 import * as htmlToImage from 'html-to-image';
-import { toPng, toJpeg, toBlob, toPixelData, toSvg } from 'html-to-image';
 const AdHtml = forwardRef((props,ref)=>{
 
-/*<div className="bgImgContainer">
-    <img src={`${props.locationData.picture}188160.png`} alt={props.locationData.city_name} />
-    </div> */
     return (<div ref={ref} className="adCard" key={props.locationData.id}>
    <div className="bgImgContainer">
-    <img src={`${props.locationData.picture}188160.png`} alt={props.locationData.city_name} />
     </div>
     <div className="foreground">
     <div className="logosvg">
@@ -30,7 +25,7 @@ const AdHtml = forwardRef((props,ref)=>{
     <h2>{props.title}</h2>
     <div className="rtrip">
     {props.roundTripArray.map((e,i)=>{
-        return (<div>{e}</div>)
+        return (<div key={i}>{e}</div>)
     })}
     </div>
     </div>
@@ -41,23 +36,13 @@ export default function AdCard(props){
     const [imgElem, setimgElem] = useState(null);
     const htmlref = useRef(null);
     const canvasContainer = useRef(null);
-    var htmlToImage = require('html-to-image');
-    //let adCardhtml =
-  //console.log(htmlref.current);
     var canvas = null;
 useEffect(() => {
-    // Update the document title using the browser API
-    //console.log(htmlref.current);
     htmlToImage.toPng(htmlref.current).then(function(dataUrl){
         var img = new Image();
-        img.crossOrigin = "anonymous";
         img.src = dataUrl;
-        var imageLoaded = 0;
+        img.setAttribute('crossOrigin', 'anonymous')
         var  bgimg = new window.Image();
-        //bgimg.setAttribute('crossOrigin', 'anonymous');
-        //bgimg.src = `${props.locationData.picture}188160.png`;
-          
-        //console.log(dataUrl);
         canvas = document.createElement("canvas");
         canvas.width = 600;
         canvas.height = 500;
@@ -66,38 +51,19 @@ useEffect(() => {
         ctx.lineTo(200,100);
         
         ctx.globalCompositeOperation = "destination-over";
-        //canvas.drawImage(0,0,img,500,400);
-       
            
        bgimg.onload = function(){
             
             ctx.drawImage(bgimg,0,0,600,500);
-            imageLoaded++;
-            console.log(imageLoaded);
-           
-            if(imageLoaded==2){
-                
-   
-                //console.log(canvas.toDataURL("img/png"));
-            }
        }
         img.onload = function(){
             
             ctx.drawImage(img,0,0,600,500);
-            imageLoaded++;
-            console.log(imageLoaded);
         }
        
         bgimg.setAttribute("src",`${props.locationData.picture}188160.png`);
      
-       // console.log(canvas.toDataURL("img/png"));
-       
-        //
-        //document.body.appendChild(adImage);
         canvasContainer.current.appendChild(canvas);
-        canvasContainer.current.appendChild(img);
-        //console.log(bgimg);
-        //setimgElem(img);
     }).catch(function(error){
         console.error('oops');
     });
