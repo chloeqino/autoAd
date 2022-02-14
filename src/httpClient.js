@@ -10,13 +10,11 @@ export default {
         'x-api-key': apiKey
     }}
       ).then(res => res.json().then((data)=>{
-          console.log("status"+res.status);
           if(res.status>=400&&res.status<=599){
             return 'error'
           }
           return data;
       })).catch((error)=>{
-        console.log(error);
         return 'error';
       });
   },
