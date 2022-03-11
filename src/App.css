@@ -1,17 +1,41 @@
 .App {
   text-align: center;
 }
+:root{
+  --themeblue: #2274A5;
+}
 .adCard{
  
   position: relative;
-  height: 400px;
+  height: 600px;
  width: 500px;
  display: flex;
  flex-direction: column;
  justify-content: center;
  
+ color: #2274A5;
  
- 
+}
+.rtrip .city .label{
+  margin-bottom: 2px;
+}
+.rtrip .city
+{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.rtrip{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.vline{
+  width: 0;
+  height: 8px;
+  border-left: 0.5px dashed;
+  margin: 0;
+  text-align: center;
 }
 .canvasContainer{
   display: table;
@@ -30,9 +54,9 @@
 }
 .bgImgContainer img{
   position: absolute;
-  height: 400px;
+  height: 600px;
   width: 100%;
-  object-fit: fill;
+  object-fit: cover;
   object-position: top;
   left: 0;
   top: 0;
@@ -70,13 +94,53 @@
   margin-bottom: 12px;
   display: flex;
   justify-content: center;
-  font-size: 20px;
+  font-size: 12px;
+  font-weight: 700;
   border-radius: 13px;
+  text-align: center;
+  flex-wrap: wrap;
+  padding: 12px 2px;
 }
-.adCard .priceBox::after{
+.adCard .priceBox .price{
+  display: flex;
+  font-weight: 800;
+  height: auto;
+  text-align: center;
+  font-size: 25px;
+ 
+}
+.adCard h3{
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+.adCard h3::after{
+  content: "";
+  position: relative;
+ display: table;
+  width: 50%;
+  height: 1px;
+  bottom: 0;
+  left: 25%;
+  border-bottom: 1px solid;
+
+}
+
+
+.adCard .date .start{
+  
+}
+.adCard .priceBox .price:before{
   content: "\20AC";
   font-size: 0.5em;
   align-self: flex-start;
+  position: relative;
+  top:-0.5em;
+  
+ 
+}
+.adCard .priceBox::after{
+ 
 
 }
 .App-logo {

@@ -29,7 +29,8 @@ function App() {
        
           {locationData.locations.map((e, i)=>{
             return (
-          <AdCard key={i} locationData={e} title={locationData.title} roundTripArray={roundTrip} price={locationData.price} />
+          <AdCard key={i} locationData={e} title={locationData.title} roundTripArray={roundTrip} price={locationData.price}
+          startDate={locationData.startDate} endDate={locationData.endDate} />
           );})}
       </header>
     </div>

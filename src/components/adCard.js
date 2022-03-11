@@ -1,9 +1,20 @@
 import React, { useState, useEffect,useRef,forwardRef, createContext } from "react";
 import * as htmlToImage from 'html-to-image';
+import bg from "../testbg.png";
+function ddShortMonth(dateobject){
+  
+    let datestring = dateobject.getDate()+" ";
+    datestring+= dateobject.toLocaleString('default', { month: 'short' });
+   console.log(dateobject);
+   return datestring;
+}
 const AdHtml = forwardRef((props,ref)=>{
-
+/*<div className="bgImgContainer">
+   <img src={`${props.locationData.picture}188160.png`} alt={props.locationData.city_name} crossOrigin="*" />
+    </div> */
     return (<div ref={ref} className="adCard" key={props.locationData.id}>
    <div className="bgImgContainer">
+   <img src={bg} alt={props.locationData.city_name} />
     </div>
     <div className="foreground">
     <div className="logosvg">
@@ -19,13 +30,31 @@ const AdHtml = forwardRef((props,ref)=>{
 </svg>
 </div>
      <div className="priceBox">
-       {props.price}
+       <div className="price">{props.price}</div>
+       per person
      </div>
     <div className="textContent">
     <h2>{props.title}</h2>
+    <div className="date">
+       <span className="start">From: <date>{ddShortMonth(new Date(props.startDate))}</date></span>
+       <span className="end">  To: <date>{ddShortMonth(new Date(props.endDate))}</date></span>
+    </div>
     <div className="rtrip">
+        <div>
+        <h3>round trip</h3>
+        </div>
     {props.roundTripArray.map((e,i)=>{
-        return (<div key={i}>{e}</div>)
+        return (<div key={i} className="city">
+           {
+              (i!=0 && i!=props.roundTripArray.length-1)?<svg xmlns="http://www.w3.org/2000/svg" width="10" height="16" viewBox="0 0 39 40" fill="none">
+              <circle cx="19.5" cy="20.0769" r="18.6" transform="rotate(90 19.5 20.0769)" fill="white" stroke="#2274A5" stroke-width="1.8"/>
+              <path d="M22.208 9.80713L19.7356 11.8869C19.3642 12.2053 18.7488 12.2053 18.3774 11.8869L15.905 9.80713C15.332 9.52063 14.6316 9.80713 14.4194 10.4226L13.9525 11.8339C13.8358 12.1734 13.9525 12.6721 14.2072 12.9268L16.6159 15.3462C16.7963 15.5159 16.9343 15.8555 16.9343 16.0996V19.1237C16.9343 19.5694 16.6053 19.7816 16.1915 19.6119L10.9814 17.3623C10.1643 17.0121 9.49582 17.4472 9.49582 18.3385L9.49582 19.7074C9.49582 20.4183 10.0264 21.2354 10.6843 21.5113L16.6159 24.0686C16.7857 24.1428 16.9343 24.3657 16.9343 24.5567V27.74C16.9343 28.7375 17.6664 29.9153 18.5578 30.3716C18.8761 30.5308 19.2475 30.5308 19.5658 30.3716C20.4572 29.9153 21.1894 28.7269 21.1894 27.7294V24.5461C21.1894 24.3551 21.3379 24.1322 21.5077 24.0579L27.4287 21.5006C28.0866 21.2354 28.6172 20.4183 28.6172 19.7074L28.6172 18.3385C28.6172 17.4472 27.9487 17.0121 27.1316 17.3623L21.9215 19.6119C21.5183 19.7922 21.1787 19.5694 21.1787 19.1237L21.1787 16.0996C21.1787 15.8555 21.3167 15.5159 21.4865 15.3462L23.8952 12.9268C24.1499 12.6721 24.2666 12.184 24.1499 11.8339L23.683 10.4226C23.492 9.80713 22.7916 9.51001 22.208 9.80713Z" fill="white" stroke="#2274A5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>:<svg xmlns="http://www.w3.org/2000/svg" width="10" height="20" viewBox="0 0 29 35" fill="none">
+<path d="M14.5019 19.6106C17.1997 19.6106 19.3867 17.4236 19.3867 14.7258C19.3867 12.028 17.1997 9.84106 14.5019 9.84106C11.8042 9.84106 9.61719 12.028 9.61719 14.7258C9.61719 17.4236 11.8042 19.6106 14.5019 19.6106Z" stroke="#2274A5" stroke-width="2"/>
+<path d="M1.38007 11.8758C4.46435 -1.68256 24.5514 -1.66691 27.62 11.8914C29.4205 19.8448 24.4731 26.577 20.1363 30.7416C16.9894 33.7789 12.0107 33.7789 8.84811 30.7416C4.52698 26.577 -0.420406 19.8292 1.38007 11.8758Z" stroke="#2274A5" stroke-width="2"/>
+</svg>}
+            <div className="label">{e}</div>
+       {(i==props.roundTripArray.length-1)?"": <div className="vline"></div>}</div>)
     })}
     </div>
     </div>
@@ -38,11 +67,13 @@ export default function AdCard(props){
     const canvasContainer = useRef(null);
     var canvas = null;
 useEffect(() => {
-    htmlToImage.toPng(htmlref.current).then(function(dataUrl){
+    htmlToImage.toPng(htmlref.current,{cacheBust:true,}).then(function(dataUrl){
         var img = new Image();
         img.src = dataUrl;
-        img.setAttribute('crossOrigin', 'anonymous')
+        //img.setAttribute('crossOrigin', 'Anonymous');
+        //console.log("url: "+dataUrl);
         var  bgimg = new window.Image();
+         bgimg.setAttribute('crossOrigin', '*')
         canvas = document.createElement("canvas");
         canvas.width = 600;
         canvas.height = 500;
@@ -55,6 +86,7 @@ useEffect(() => {
        bgimg.onload = function(){
             
             ctx.drawImage(bgimg,0,0,600,500);
+            canvas.toDataURL('image/png');
        }
         img.onload = function(){
             
@@ -62,8 +94,9 @@ useEffect(() => {
         }
        
         bgimg.setAttribute("src",`${props.locationData.picture}188160.png`);
-     
-        canvasContainer.current.appendChild(canvas);
+        //bgimg.crossOrigin = "Anonymous";
+        //canvasContainer.current.appendChild(canvas);
+        canvasContainer.current.appendChild(img);
     }).catch(function(error){
         console.error('oops');
     });
@@ -71,8 +104,9 @@ useEffect(() => {
   
     return (
         <div className='canvasContainer' ref={canvasContainer}>
-            <div className='dn'>
-            <AdHtml ref={htmlref} locationData={props.locationData} title={props.title} price={props.price} roundTripArray={props.roundTripArray} />
+            <div className='d'>
+            <AdHtml ref={htmlref} locationData={props.locationData} title={props.title} price={props.price} roundTripArray={props.roundTripArray} startDate={props.startDate}
+            endDate={props.endDate} />
             </div>
         
           
