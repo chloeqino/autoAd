@@ -8,7 +8,7 @@
  
   position: relative;
   height: 600px;
- width: 500px;
+ width: 400px;
  display: flex;
  flex-direction: column;
  justify-content: center;
@@ -44,6 +44,7 @@
   border:none;
   margin: 0;
 }
+
 .adCard .bgImgContainer{
   position: absolute;
   top: 0;
@@ -63,7 +64,7 @@
 }
 .adCard .logosvg{
   position: relative;
-  transform: scale(0.4);
+  
   margin: 0;
 }
 .adCard .textContent{
@@ -71,11 +72,13 @@
   z-index: 2;
   display: table;
   background: rgba(255, 255, 255, 0.81);
-  width: 40%;
+  width: 65%;
   margin: 0 auto;
-  font-size: 0.5rem;
+  font-size: 0.7rem;
   padding-bottom: 1rem;
   border-radius: 13px;
+  padding-right: 10px;
+  padding-left: 10px;
 }
 .dn{
   display: block;
@@ -85,7 +88,11 @@
   padding: 0;
   width: 0;
 }
-
+.adCard .priceBox .svgContainer{
+  position: absolute;
+  bottom: -8px;
+  left: -6px;
+}
 .adCard .priceBox{
   position: relative;
   background: white;
@@ -99,14 +106,14 @@
   border-radius: 13px;
   text-align: center;
   flex-wrap: wrap;
-  padding: 12px 2px;
+  padding: 12px 1px;
 }
 .adCard .priceBox .price{
   display: flex;
   font-weight: 800;
   height: auto;
   text-align: center;
-  font-size: 25px;
+  font-size: 35px;
  
 }
 .adCard h3{
@@ -127,8 +134,11 @@
 }
 
 
-.adCard .date .start{
-  
+.adCard .date{
+  font-weight: 600;
+}
+.adCard .date .thinner{
+  font-weight: 300;
 }
 .adCard .priceBox .price:before{
   content: "\20AC";
