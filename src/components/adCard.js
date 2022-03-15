@@ -57,7 +57,7 @@ const AdHtml = forwardRef((props,ref)=>{
     </div>
     <div className="rtrip">
         <div>
-        <h3>round trip</h3>
+        <h3>Round Trip</h3>
         </div>
     {props.roundTripArray.map((e,i)=>{
         return (<div key={i} className="city">
@@ -80,12 +80,15 @@ const AdHtml = forwardRef((props,ref)=>{
 export default function AdCard(props){
     const [imgElem, setimgElem] = useState(null);
     const htmlref = useRef(null);
+    const [imgUrl,setUrl] = useState(null);
     const canvasContainer = useRef(null);
     var canvas = null;
 useEffect(() => {
     htmlToImage.toPng(htmlref.current,{cacheBust:true,}).then(function(dataUrl){
         var img = new Image();
         img.src = dataUrl;
+        img.setAttribute("key",dataUrl);
+        setUrl(dataUrl);
         //img.setAttribute('crossOrigin', 'Anonymous');
         //console.log("url: "+dataUrl);
         var  bgimg = new window.Image();
@@ -112,19 +115,19 @@ useEffect(() => {
         bgimg.setAttribute("src",`${props.locationData.picture}188160.png`);
         //bgimg.crossOrigin = "Anonymous";
         //canvasContainer.current.appendChild(canvas);
-        canvasContainer.current.appendChild(img);
+        //canvasContainer.current.appendChild(img);
     }).catch(function(error){
         console.error('oops');
     });
-  },[]);
+  },[props.locationData]);
   
     return (
         <div className='canvasContainer' ref={canvasContainer}>
-            <div className='d'>
+            <div className='dn'>
             <AdHtml ref={htmlref} locationData={props.locationData} title={props.title} price={props.price} roundTripArray={props.roundTripArray} startDate={props.startDate}
             endDate={props.endDate} />
             </div>
-        
+            <img src={imgUrl} key="img" width="400"/>
           
         </div>
     );
