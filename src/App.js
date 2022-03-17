@@ -27,7 +27,7 @@ function App() {
             newroundTrip.push(data.tripDetails.transportations[i].destination);
           }
      }
-     
+     console.log(newroundTrip);
      setroundTrip(newroundTrip);
   })
 }, [locationId]);
