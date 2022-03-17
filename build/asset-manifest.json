@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/autoAd/static/css/main.4bc8ca60.css",
+    "main.js": "/autoAd/static/js/main.e086e43f.js",
+    "static/js/787.46b6ae2a.chunk.js": "/autoAd/static/js/787.46b6ae2a.chunk.js",
+    "static/media/testbg.png": "/autoAd/static/media/testbg.84058b423e76f86c05e4.png",
+    "index.html": "/autoAd/index.html",
+    "main.4bc8ca60.css.map": "/autoAd/static/css/main.4bc8ca60.css.map",
+    "main.e086e43f.js.map": "/autoAd/static/js/main.e086e43f.js.map",
+    "787.46b6ae2a.chunk.js.map": "/autoAd/static/js/787.46b6ae2a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4bc8ca60.css",
+    "static/js/main.e086e43f.js"
+  ]
+}
